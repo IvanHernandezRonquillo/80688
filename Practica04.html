@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica04</title>
+    <style>
+    img{
+        box-shadow: 10px 10px 10px red;
+    }
+    figure{
+        text-align: center;
+        width: 300px;
+        display: inline-block;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Random Picture</h1>
+    <div id="app"></div>
+    <!-- <figure>
+        <img src="https://picsum.photos/id/1/200/200" alt="">
+        <figcaption>Jhon</figcaption>
+    </figure>
+   <figure> 
+    <img src="https://picsum.photos/id/2/200/200" alt="">
+    <figcaption>Jane</figcaption>
+   </figure> -->
+    
+
+    <script>
+        const app= document.getElementById("app");
+        const url = "https://picsum.photos/id/";
+        const size = "/200/200";
+        const Picture = (parametro)=>{
+            const src=url+parametro.id+size
+            console.log(src);
+            return `
+            <figure>
+                <img src="${src}">
+                <figurecaption>${parametro.nombre}</figurecaption>
+            </figure>
+        `
+        }
+        app.innerHTML=Picture({id:1, nombre:"jonh"});
+        app.innerHTML+=Picture({id:"2", nombre:"jane"});
+        app.innerHTML+=Picture({id:"3", nombre:"joane"});
+        
+
+    </script>
+</body>
+</html>
