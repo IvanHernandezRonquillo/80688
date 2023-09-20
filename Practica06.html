@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica06</title>
+</head>
+<style>
+    *{
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+
+    }
+    body{
+        font-family:
+         'Franklin Gothic Medium';
+    }
+    h1{
+        text-align: center;
+        padding-bottom: 10px;
+    }
+    form{
+        box-shadow: 10px 20px 15px;
+        width: 300px;
+        /* border-style: solid; */
+        border: 1px solid lightslategray;
+        border-radius: 5px;
+        margin: auto;
+        padding: 20px;
+    }
+    input{
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid lightslategray;
+    }
+    input[type="submit"]{
+        color: white;
+        background-color: blue;
+        
+    }
+    label{
+        display: block;
+    }
+</style>
+<body>
+    <h1>inicio de sesion</h1>
+    <form action="" id="formulario">
+
+<label for="user">nombre de usuario</label>
+        <input type="text" id="user" name="user">
+
+<label for="password">contraseña</label> 
+        <input type="password" id="password" name="password">
+
+        <input type="submit" value="Iniciar sesion">
+    </form>
+
+    <script>
+        const loginform = document.getElementById("formulario")
+        loginform.addEventListener("submit", evento => {
+            evento.preventDefault()
+            //console.log(evento)
+            let u= document.getElementById("user").value
+            let p= document.getElementById("password").value
+            alert("usuario:"+u + "password:"+p)
+            alert(`usuario ${u} y contraseña ${p}`)
+        })
+    </script>
+</body>
+</html>
