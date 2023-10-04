@@ -7,59 +7,84 @@
 </head>
 
 <style>
-
-    img{
+    img {
         box-shadow: 10px 10px 10px red;
         border-radius: 10% 40% 30%;
     }
-    figure{
+
+    figure {
         text-align: center;
         width: 300px;
         display: inline-block;
     }
-    img.redonda{
+
+    img.redonda {
         border-radius: 50%;
     }
-    </style>
+</style>
 
 <body>
     <h1>Random Picture</h1>
     <div id="app"></div>
-    <!-- <figure>
-        <img src="https://picsum.photos/id/1/200/200" alt="">
-        <figcaption>Jhon</figcaption>
-    </figure>
-   <figure> 
-    <img src="https://picsum.photos/id/2/200/200" alt="">
-    <figcaption>Jane</figcaption>
-   </figure> -->
     
+    <!-- Agregar el formulario y el input de tipo file -->
+    <form id="imageForm">
+        <input type="file" id="imageInput" accept="image/*">
+        <button type="submit">Cargar Imagen</button>
+    </form>
 
     <script>
-        const app= document.getElementById("app");
+        const app = document.getElementById("app");
         const url = "https://picsum.photos/id/";
         const size = "/200/200";
-        const Picture = (parametro)=>{
-            const src=url+parametro.id+size
+
+        const Picture = (parametro) => {
+            const src = url + parametro.id + size;
             return `
-            <figure>
-                <img src="${src}">
-                <figurecaption>${parametro.nombre}</figurecaption>
-            </figure>
-        `
+                <figure>
+                    <img src="${src}">
+                    <figurecaption>${parametro.nombre}</figurecaption>
+                </figure>
+            `;
         }
-        app.innerHTML=Picture({id:1, nombre:"jonh"});
-        app.innerHTML+=Picture({id:"2", nombre:"jane"});
-        app.innerHTML+=Picture({id:"3", nombre:"joane"});
-        
-        const lista=document.querySelectorAll("img")
+
+        app.innerHTML = Picture({ id: 1, nombre: "jonh" });
+        app.innerHTML += Picture({ id: "2", nombre: "jane" });
+        app.innerHTML += Picture({ id: "3", nombre: "joane" });
+
+        const lista = document.querySelectorAll("img");
         for (let i = 0; i < lista.length; i++) {
-            lista[i].addEventListener("click", ()=>{
-                // lista[i].style.borderRadius = "50%"
-                lista[i].classList.toggle("redonda")
+            lista[i].addEventListener("click", () => {
+                lista[i].classList.toggle("redonda");
             });
-            
         }
+
+        // Agregar un evento para cargar la imagen seleccionada
+        const imageForm = document.getElementById("imageForm");
+        const imageInput = document.getElementById("imageInput");
+
+        imageForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const selectedFile = imageInput.files[0];
+
+            if (selectedFile) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const uploadedImage = new Image();
+                    uploadedImage.src = event.target.result;
+
+                    // Agregar la imagen cargada al DOM
+                    app.innerHTML += `
+                        <figure>
+                            <img src="${uploadedImage.src}">
+                            <figurecaption>Imagen Cargada</figurecaption>
+                        </figure>
+                    `;
+                };
+
+                reader.readAsDataURL(selectedFile);
+            }
+        });
     </script>
 </body>
 </html>
