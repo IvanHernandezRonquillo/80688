@@ -1,11 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-//import App from './App.jsx'
+// import App from './App.jsx'
 import './index.css'
-import miFileSet from './miFileSet.jsx'
+// import MiFieldSet from './MiFieldSet.jsx'
+import Formulario from './Formulario.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <miFileSet titulo="datos personales" txt1="nombre" txt2="password"/>
+    {/* <App /> */}
+      {/* <form action="">
+        <MiFieldSet titulo="Datos Personales" txt1="Nombre" txt2="Password"/>
+        <MiFieldSet titulo="Datos Generales" txt1="Direccion" txt2="Correo"/>
+        <input type="submit" value="Enviar datos" />
+    </form> */}
+    <Formulario />
   </React.StrictMode>,
 )
